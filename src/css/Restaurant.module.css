@@ -1,0 +1,17 @@
+.textlarge {
+  font-size: 100px;
+}
+.wrap {
+  width: 100vw;
+  justify-content: space-between;
+}
+.menuWrapper {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.name {
+  padding-top: 30px;
+  padding-left: 35px;
+  font-size: 20px;
+}
