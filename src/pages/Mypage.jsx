@@ -1,51 +1,102 @@
-import { Container, Form, Row, Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import React, { useContext, useEffect, useState } from 'react';
+import * as auth from '../apis/auth';
+import MypageForm from '../components/Mypage/MypageForm';
+import { LoginContext } from '../contexts/LoginContextProvider';
+import { useNavigate } from 'react-router-dom';
+import * as Swal from '../apis/alert';
 
 export default function Mypage() {
-  let user = useSelector((state) => state.user);
+  const [userInfo, setUserInfo] = useState({});
+  const { isLogin, userRole, logout } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  //회원 정보 조회
+  const getUserInfo = async () => {
+    // 비로그인 혹은 USER 권한이 없을 경우 로그인 페이지로 이동
+    if (!isLogin || !userRole.isUser) {
+      alert('로그인 후 이용해주세요.');
+      navigate('/login');
+      return;
+    }
+    const response = await auth.getUserInfo();
+    const data = response.data;
+    console.log(data);
+    setUserInfo(data);
+  };
+
+  //회원 정보 수정
+  const updateUser = async (form) => {
+    let response;
+    let data;
+    try {
+      response = await auth.update(form);
+    } catch (error) {
+      console.log(`error : ${error}`);
+      console.log(`status : ${error.response.status}`);
+      console.log('회원정보 수정 실패');
+    }
+
+    data = response.data;
+    const status = response.status;
+    console.log(`data : ${data}`);
+    console.log(`status : ${status}`);
+
+    if (status === 200) {
+      Swal.alert(
+        '회원정보 수정 성공',
+        '로그아웃 후, 다시 로그인해주세요.',
+        'success',
+        () => {
+          logout();
+        }
+      );
+    } else {
+      Swal.alert('회원정보 수정 실패', '양식에 맞게 입력해주세요.', 'error');
+    }
+  };
+  // 회원 탈퇴
+  const deleteUser = async (userId) => {
+    let response;
+    let data;
+    console.log(userId);
+    try {
+      response = await auth.deleteAccount(userId);
+    } catch (error) {
+      console.log(`error : ${error}`);
+      console.log(`status : ${error.response.status}`);
+      console.log('회원탈퇴 실패');
+      return;
+    }
+    data = response.data;
+    const status = response.status;
+    console.log(`data : ${data}`);
+    console.log(`status : ${status}`);
+
+    if (status === 200) {
+      Swal.alert('회원탈퇴 성공', '그동안 감사했습니다.', 'success', () => {
+        logout(true);
+      });
+    } else {
+      Swal.alert('회원탈퇴 실패', '고객센터에 문의해주세요', 'error');
+    }
+  };
+
+  useEffect(() => {
+    if (!isLogin) {
+      return;
+    }
+    getUserInfo();
+  }, [isLogin]);
+
   return (
-    <Container>
-      <Form>
-        <Row>
-          <Form.Group className="mb-3" controlId="name">
-            <Form.Label>이름</Form.Label>
-            <Form.Control type="text" defaultValue={user.name} />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="address">
-            <Form.Label>주소</Form.Label>
-            <Form.Control type="text" defaultValue={user.address} />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="tel">
-            <Form.Label>전화 번호</Form.Label>
-            <Form.Control type="tel" defaultValue={user.tel} />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>이메일</Form.Label>
-            <Form.Control type="email" defaultValue={user.email} />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="id">
-            <Form.Label>아이디</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter email"
-              defaultValue={user.id}
-            />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Button variant="primary" type="submit">
-            수정하기
-          </Button>
-        </Row>
-      </Form>
-    </Container>
+    <>
+      {isLogin && (
+        <MypageForm
+          userInfo={userInfo}
+          updateUser={updateUser}
+          deleteUser={deleteUser}
+        />
+      )}
+    </>
   );
 }
