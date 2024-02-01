@@ -1,9 +1,14 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/Nav.module.css';
+import OffLogin from './OffLogin.jsx';
+import OnLogin from './OnLogin.jsx';
+import { useContext } from 'react';
+import { LoginContext } from '../contexts/LoginContextProvider.jsx';
 
-export default function SiteNav({ isLogin }) {
+export default function SiteNav() {
   const navigate = useNavigate();
+  const { isLogin, logout, userInfo } = useContext(LoginContext);
 
   return (
     <Navbar sticky="top" className={styles.nav} bg="dark" data-bs-theme="dark">
@@ -11,14 +16,11 @@ export default function SiteNav({ isLogin }) {
         <Navbar.Brand href="/">
           <span className="logoTitle">ZeroPlate</span>
         </Navbar.Brand>
-        <Nav className="ms-auto">
-          <Nav.Link onClick={() => navigate('/checkout')}>로그인</Nav.Link>
-        </Nav>
-        {/* {isLogin === 0 ? (
-          <OffLogin navigate={navigate} />
+        {isLogin ? (
+          <OnLogin userInfo={userInfo} logout={logout} navigate={navigate} />
         ) : (
-          <OnLogin user={userInfo} navigate={navigate} />
-        )} */}
+          <OffLogin navigate={navigate} />
+        )}
       </Container>
     </Navbar>
   );
