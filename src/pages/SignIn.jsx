@@ -1,53 +1,43 @@
-import { Button, Container, Form, Row } from 'react-bootstrap';
-
-import onSignIn from '../utils/onSignIn';
+import SignInForm from '../components/SignIn/SignInForm';
+import * as auth from '../apis/auth';
+import { useNavigate } from 'react-router-dom';
+import * as Swal from '../apis/alert';
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  // 회원가입 요청
+  const signIn = async (form) => {
+    let response;
+    let data;
+    try {
+      response = await auth.register(form);
+    } catch (error) {
+      console.log(`error : ${error}`);
+      console.log(`status : ${error.response.status}`);
+      console.log('회원가입 요청 실패');
+      return;
+    }
+    data = response.data;
+    const status = response.status;
+    console.log(`data : ${data}`);
+    console.log(`status : ${status}`);
+
+    if (status === 200) {
+      Swal.alert(
+        '회원가입 성공',
+        '로그인 페이지로 이동합니다.',
+        'success',
+        () => {
+          navigate('/login');
+        }
+      );
+    } else {
+      Swal.alert('회원가입 실패', '양식에 맞게 입력해주세요.', 'error');
+    }
+  };
   return (
-    <Container>
-      <Form onSubmit={onSignIn}>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>이름</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>닉네임</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>전화 번호</Form.Label>
-            <Form.Control type="tel" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>이메일</Form.Label>
-            <Form.Control type="email" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>아이디</Form.Label>
-            <Form.Control type="text" placeholder="Enter email" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>비밀번호</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-        </Row>
-        <Row>
-          <Button variant="primary" type="submit">
-            회원가입
-          </Button>
-        </Row>
-      </Form>
-    </Container>
+    <>
+      <SignInForm signIn={signIn} />
+    </>
   );
 }
