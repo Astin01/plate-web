@@ -1,7 +1,7 @@
-import SignInForm from '../components/SignIn/SignInForm';
-import * as auth from '../apis/auth';
+import SignInForm from '../../components/SignIn/SignInForm';
+import * as auth from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
-import * as Swal from '../apis/alert';
+import * as Swal from '../../apis/alert';
 
 export default function SignIn() {
   const navigate = useNavigate();

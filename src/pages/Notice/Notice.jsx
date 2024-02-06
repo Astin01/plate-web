@@ -1,4 +1,4 @@
-export default function EventDetail({ image, title, content }) {
+const Notice = ({ image, title, content }) => {
   return (
     <div>
       <img
@@ -12,4 +12,6 @@ export default function EventDetail({ image, title, content }) {
       <p>{content}</p>
     </div>
   );
-}
+};
+
+export default Notice;

@@ -1,6 +1,6 @@
-import Category from '../components/Category';
-import MainCarousel from '../components/MainCarousel';
-import styles from '../css/Home.module.css';
+import Category from '../components/Main/Category';
+import MainCarousel from '../components/Main/MainCarousel';
+import styles from '../css/Main/Home.module.css';
 
 export default function Home() {
   const data = [

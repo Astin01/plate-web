@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import RestaurantDetails from '../components/RestaurantDetail';
+import RestaurantDetails from '../../components/Restaurant/RestaurantDetail';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 

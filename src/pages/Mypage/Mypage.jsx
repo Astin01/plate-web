@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import * as auth from '../apis/auth';
-import MypageForm from '../components/Mypage/MypageForm';
-import { LoginContext } from '../contexts/LoginContextProvider';
+import * as auth from '../../apis/auth';
+import MypageForm from '../../components/Mypage/MypageForm';
+import { LoginContext } from '../../contexts/LoginContextProvider';
 import { useNavigate } from 'react-router-dom';
-import * as Swal from '../apis/alert';
+import * as Swal from '../../apis/alert';
 
 export default function Mypage() {
   const [userInfo, setUserInfo] = useState({});

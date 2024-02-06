@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import Restaurants from '../components/Restaurant';
-import styles from '../css/Restaurant.module.css';
+import RestaurantComponent from '../../components/Restaurant/Restaurant';
+import styles from '../../css/Restaurant/Restaurant.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ export default function Restaurant() {
   return (
     <div className={`container ${styles.wrapContent}`}>
       <div className={`row justify-content-center`}>
-        <Restaurants data={data} category={params.category} />
+        <RestaurantComponent data={data} category={params.category} />
       </div>
     </div>
   );
