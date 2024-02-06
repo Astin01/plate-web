@@ -1,0 +1,8 @@
+.container {
+  justify-content: center !important;
+  width: 450px;
+}
+.nav {
+  width: 100%;
+  justify-content: space-around;
+}

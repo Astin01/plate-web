@@ -1,0 +1,18 @@
+.name {
+  padding-top: 30px;
+  padding-left: 70px;
+  font-size: 24px;
+}
+.icon {
+  font-size: 300px;
+}
+.container {
+  text-align: center;
+}
+.contentWrap {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-items: center;
+}
