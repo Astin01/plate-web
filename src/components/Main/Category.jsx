@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/Category.module.css';
+import styles from '../../css/Main/Category.module.css';
 
 export default function Category({ data }) {
   const navigate = useNavigate();

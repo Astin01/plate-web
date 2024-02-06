@@ -1,6 +1,4 @@
-import { useParams } from 'react-router-dom';
-import styles from '../css/RestaurantDetail.module.css';
-import { useEffect, useState } from 'react';
+import styles from '../../css/Restaurant/RestaurantDetail.module.css';
 
 export default function RestaurantDetail({ data }) {
   return (

@@ -1,18 +1,16 @@
 import { Button, Container, Form, Row } from 'react-bootstrap';
-import styles from './SignInForm.module.css';
+import styles from '../../css/SignIn/SignInForm.module.css';
 
 export default function SignInForm({ signIn }) {
   const onSignIn = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const userId = form.userId.value;
     const userPassword = form.userPassword.value;
     const name = form.name.value;
     const nickname = form.nickname.value;
     const email = form.email.value;
-    console.log('userId : ' + userId);
-    console.log('userPassword : ' + userPassword);
-    console.log('name : ' + name);
 
     signIn({ userId, userPassword, name, nickname, email });
   };

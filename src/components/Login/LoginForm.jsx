@@ -1,8 +1,6 @@
 import { Button, Container, Form, Row } from 'react-bootstrap';
 
-import onLogin from '../../utils/onLogin';
-import checkLogin from '../../utils/checkLogin';
-import styles from './LoginForm.module.css';
+import styles from '../../css/Login/LoginForm.module.css';
 import { useContext } from 'react';
 import { LoginContext } from '../../contexts/LoginContextProvider';
 
@@ -43,7 +41,7 @@ export default function LoginForm() {
         </Row>
         <Row>
           <Form.Group className="mb-3" controlId="checkBox">
-            <Form.Check type="checkbox" label="기억하기" />
+            <Form.Check name="check" type="checkbox" label="기억하기" />
           </Form.Group>
         </Row>
         <Row>

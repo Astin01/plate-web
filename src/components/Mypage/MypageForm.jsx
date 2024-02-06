@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Form, Row, Button } from 'react-bootstrap';
-import styles from './MypageForm.module.css';
+import styles from '../../css/Mypage/MypageForm.module.css';
 
 const MypageForm = ({ userInfo, updateUser, deleteUser }) => {
   const onUpdate = (e) => {

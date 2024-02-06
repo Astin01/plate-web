@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/Restaurant.module.css';
+import styles from '../../css/Restaurant/Restaurant.module.css';
 
 export default function Restaurant({ data, category }) {
   const navigate = useNavigate();
