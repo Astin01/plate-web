@@ -26,6 +26,13 @@ function App() {
   const DiscussionForm = React.lazy(() =>
     import('./pages/Discussion/DiscussionForm')
   );
+  const Suggestion = React.lazy(() => import('./pages/Suggestion/Suggestion'));
+  const SuggestionDetail = React.lazy(() =>
+    import('./pages/Suggestion/SuggestionDetail')
+  );
+  const SuggestionForm = React.lazy(() =>
+    import('./pages/Suggestion/SuggestionForm')
+  );
 
   return (
     <>
@@ -39,6 +46,7 @@ function App() {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/event/:id" element={<Notice />} />
               <Route path="/category/:category" element={<Category />} />
+
               <Route
                 path="/category/:category/restaurant"
                 element={<Restaurant />}
@@ -47,7 +55,9 @@ function App() {
                 path="/category/:category/restaurant/:name"
                 element={<RestaurantDetail />}
               />
+
               <Route path="/discussion" element={<Discussion />} />
+              <Route path="/discussion/:id" element={<DiscussionDetail />} />
               <Route
                 path="/discussion/new"
                 element={<DiscussionForm isTrue={false} />}
@@ -56,7 +66,18 @@ function App() {
                 path="/discussion/edit/:id"
                 element={<DiscussionForm isTrue={true} />}
               />
-              <Route path="/discussion/:id" element={<DiscussionDetail />} />
+
+              <Route path="/suggestion" element={<Suggestion />} />
+              <Route path="/suggestion/:id" element={<SuggestionDetail />} />
+              <Route
+                path="/suggestion/new/:id"
+                element={<SuggestionForm isTrue={false} />}
+              />
+              <Route
+                path="/suggestion/edit/:id"
+                element={<SuggestionForm isTrue={true} />}
+              />
+
               <Route path="/mypage" element={<Mypage />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>
