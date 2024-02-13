@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import styles from '../../css/Restaurant/RestaurantDetail.module.css';
+import { Button } from 'react-bootstrap';
 
 export default function RestaurantDetail({ data }) {
+  const navigate = useNavigate();
+  const edit = () => {
+    navigate(`/suggestion/new/${data.id}`);
+  };
   return (
     <>
       <div className={`col ${styles.container}`}>
@@ -17,6 +23,17 @@ export default function RestaurantDetail({ data }) {
         <h4>추천메뉴</h4>
         <div>{data.menu}</div>
       </div>
+      <div class="w-100"></div>
+      <div className={`col ${styles.contentWrap}`}>
+        <div>{data.content}</div>
+      </div>
+      <Button
+        variant="primary"
+        className={`${styles.editButton}`}
+        onClick={edit}
+      >
+        <span class="material-symbols-outlined">edit_document</span>
+      </Button>
     </>
   );
 }
