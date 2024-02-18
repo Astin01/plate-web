@@ -1,31 +1,42 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import SuggestionFormComponent from '../../components/Suggestion/SuggestionForm';
+import * as suggestionApi from '../../apis/suggestion';
+import * as restaurantApi from '../../apis/restaurant';
+import { LoginContext } from '../../contexts/LoginContextProvider';
+import * as Swal from '../../apis/alert';
+import styles from '../../css/Suggestion/SuggestionFormPage.module.css';
 
 const SuggestionForm = ({ isTrue }) => {
   const params = useParams();
   let [data, setData] = useState([]);
+  const { isLogin, userRole } = useContext(LoginContext);
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (!isLogin || !userRole.isUser) {
+      Swal.alert(
+        '유효하지 않은 접근입니다',
+        '로그인 후 이용해주세요',
+        'warning',
+        () => {
+          navigate('/login');
+        }
+      );
+      return;
+    }
     if (isTrue) {
-      axios({
-        method: 'get',
-        url: `/api/suggestion/${params.id}`,
-      }).then((res) => {
+      suggestionApi.getSuggestion(params.id).then((res) => {
         setData(res.data);
       });
     } else {
-      debugger;
-      axios({
-        method: 'get',
-        url: `/api/restaurants/id/${params.id}`,
-      }).then((res) => {
+      restaurantApi.getRestaurantById(params.id).then((res) => {
         setData(res.data);
       });
     }
   }, []);
   return (
-    <div className="container">
+    <div className={`container ${styles.contentWrap}`}>
       <SuggestionFormComponent isTrue={isTrue} id={params.id} data={data} />
     </div>
   );

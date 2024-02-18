@@ -1,22 +1,22 @@
 import { useParams } from 'react-router-dom';
 import RestaurantDetails from '../../components/Restaurant/RestaurantDetail';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import styles from '../../css/Restaurant/RestaurantDetailPage.module.css';
+import * as RestaurantApi from '../../apis/restaurant';
 export default function RestaurantDetail() {
   const params = useParams();
   let [data, setData] = useState([]);
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/api/restaurants/name/${params.name}`,
-    }).then((res) => {
+    RestaurantApi.getRestaurantByName(params.name).then((res) => {
       setData(res.data);
     });
   }, []);
   return (
-    <div className="container">
-      <RestaurantDetails data={data} />
+    <div className={`container ${styles.restaurantDetailPageWrap}`}>
+      <div>
+        <RestaurantDetails data={data} />
+      </div>
+      <div></div>
     </div>
   );
 }

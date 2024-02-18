@@ -1,49 +1,36 @@
 import Category from '../components/Main/Category';
 import MainCarousel from '../components/Main/MainCarousel';
 import styles from '../css/Main/Home.module.css';
+import * as notice from '../apis/notice';
+import * as categoryIconApi from '../apis/categoryIcon';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const data = [
-    {
-      icon: 'stockpot',
-      name: '한식',
-      link: 'ko',
-    },
-    {
-      icon: 'ramen_dining',
-      name: '일식',
-      link: 'jp',
-    },
-    {
-      icon: 'kebab_dining',
-      name: '중식',
-      link: 'ch',
-    },
-    {
-      icon: 'lunch_dining',
-      name: '양식',
-      link: 'eu',
-    },
-    {
-      icon: 'restaurant',
-      name: '기타',
-      link: 'etc',
-    },
-    {
-      icon: 'local_cafe',
-      name: '카페',
-      link: 'cafe',
-    },
-  ];
+  let [noticeData, setNoticeData] = useState();
+  let [categoryIcon, setCategoryIcon] = useState([]);
+
+  async function getNotice() {
+    const notices = await notice.getAllNotice();
+    setNoticeData(notices.data);
+  }
+  async function getCategoryIcon() {
+    let icons = await categoryIconApi.getAllCategoryIcon();
+    setCategoryIcon(icons.data);
+  }
+
+  useEffect(() => {
+    getNotice();
+    getCategoryIcon();
+  }, []);
   return (
     <>
-      <MainCarousel />
+      <MainCarousel data={noticeData} />
       <div
         className={`container ${styles.entireWrap}`}
         style={{ paddingTop: 20 }}
       >
         <div className="row">
-          <Category data={data} />
+          <Category data={categoryIcon} />
         </div>
       </div>
     </>
