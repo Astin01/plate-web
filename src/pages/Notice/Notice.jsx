@@ -1,15 +1,22 @@
-const Notice = ({ image, title, content }) => {
-  return (
-    <div>
-      <img
-        src={image}
-        className="event"
-        style={{ width: 1100, height: 800 }}
-        alt="event"
-      ></img>
-      <h4>{title}</h4>
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import NoticeComponent from '../../components/Notice/Notice';
+import * as noticeApi from '../../apis/notice';
+import styles from '../../css/Notice/NoticePage.module.css';
 
-      <p>{content}</p>
+const Notice = () => {
+  const param = useParams();
+  let [data, setData] = useState([]);
+
+  useEffect(() => {
+    noticeApi.getNotice(param.id).then((res) => {
+      setData(res.data);
+    });
+  }, []);
+  return (
+    <div className={styles.contentWrap}>
+      <NoticeComponent data={data} />
+      <div></div>
     </div>
   );
 };
