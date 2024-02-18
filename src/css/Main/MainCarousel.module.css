@@ -1,22 +1,14 @@
 .slidercontents {
   height: 480px;
-  background-image: url(../../img/event1.jpg);
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  color: white;
   display: flex;
   align-items: center;
-}
-.slidercontents2 {
-  height: 480px;
-  background-image: url(../../img/event2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .wrapText {
-  margin-left: 12%;
+  display: flex;
+  text-align: center;
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SuggestionForm = ({ isTrue, id, data }) => {
   const navigate = useNavigate();
-  console.log(isTrue);
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -15,10 +15,8 @@ const SuggestionForm = ({ isTrue, id, data }) => {
     const suggestion_id = data.id;
     if (!isTrue) {
       request.createSuggestion(restaurant_id, { title, content });
-      debugger;
     } else {
       request.editSuggestion(suggestion_id, { title, content });
-      debugger;
     }
 
     navigate('/suggestion');

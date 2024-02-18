@@ -14,8 +14,6 @@ export default function LoginForm() {
     const userId = form.id.value;
     const password = form.pw.value;
 
-    console.log('userId :' + userId);
-
     login(userId, password);
   };
 
@@ -40,15 +38,9 @@ export default function LoginForm() {
           </Form.Group>
         </Row>
         <Row>
-          <Form.Group className="mb-3" controlId="checkBox">
-            <Form.Check name="check" type="checkbox" label="기억하기" />
-          </Form.Group>
-        </Row>
-        <Row>
           <Button variant="primary" type="submit">
             로그인
           </Button>
-          {/* TODO : 기억하기 기능 구현 */}
         </Row>
       </Form>
     </Container>

@@ -13,7 +13,7 @@ const MypageForm = ({ userInfo, updateUser, deleteUser }) => {
       nickname: e.target.nickname.value,
       email: e.target.email.value,
     };
-    console.log(form);
+
     updateUser(form);
   };
   return (
@@ -74,12 +74,12 @@ const MypageForm = ({ userInfo, updateUser, deleteUser }) => {
             />
           </Form.Group>
         </Row>
-        <Row>
+        <Row className={styles.buttonWrap}>
           <Button variant="primary" type="submit">
             수정하기
           </Button>
           <Button
-            variant="primary"
+            variant="danger"
             type="button"
             onClick={(e) => {
               e.preventDefault();

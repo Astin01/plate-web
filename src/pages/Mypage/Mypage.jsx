@@ -20,26 +20,20 @@ export default function Mypage() {
     }
     const response = await auth.getUserInfo();
     const data = response.data;
-    console.log(data);
+
     setUserInfo(data);
   };
 
   //회원 정보 수정
   const updateUser = async (form) => {
     let response;
-    let data;
+
     try {
       response = await auth.update(form);
     } catch (error) {
-      console.log(`error : ${error}`);
-      console.log(`status : ${error.response.status}`);
-      console.log('회원정보 수정 실패');
     }
 
-    data = response.data;
     const status = response.status;
-    console.log(`data : ${data}`);
-    console.log(`status : ${status}`);
 
     if (status === 200) {
       Swal.alert(
@@ -57,20 +51,13 @@ export default function Mypage() {
   // 회원 탈퇴
   const deleteUser = async (userId) => {
     let response;
-    let data;
-    console.log(userId);
+
     try {
       response = await auth.deleteAccount(userId);
     } catch (error) {
-      console.log(`error : ${error}`);
-      console.log(`status : ${error.response.status}`);
-      console.log('회원탈퇴 실패');
       return;
     }
-    data = response.data;
     const status = response.status;
-    console.log(`data : ${data}`);
-    console.log(`status : ${status}`);
 
     if (status === 200) {
       Swal.alert('회원탈퇴 성공', '그동안 감사했습니다.', 'success', () => {
