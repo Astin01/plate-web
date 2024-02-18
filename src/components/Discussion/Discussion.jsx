@@ -11,8 +11,8 @@ const Discussion = ({ data }) => {
           className={`col text-center`}
           onClick={() => navigate(`/discussion/${data.id}`)}
         >
-          <div className={`${styles.menuWrapper}`}>
-            <span className={`${styles.name}`}>{data.title}</span>
+          <div className={styles.menuWrapper}>
+            <span className={styles.name}>{data.title}</span>
           </div>
         </div>
         <div className="w-100"></div>

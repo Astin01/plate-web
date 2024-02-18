@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const DiscussionForm = ({ data }) => {
   const navigate = useNavigate();
-  console.log(data);
+
   const onSubmit = (e) => {
     e.preventDefault();
 
