@@ -17,7 +17,7 @@ export const editSuggestion = (suggestion_id, data) =>
 
 //제안 삭제
 export const deleteSuggestion = (suggestion_id) =>
-  api.delete(`/api/suggestion/${suggestion_id}`);
+  api.delete(`/api/suggestion/delete/${suggestion_id}`);
 
 //제안 반영
 export const sendSuggestion = (suggestion_id) =>
