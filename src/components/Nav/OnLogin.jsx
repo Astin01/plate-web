@@ -13,7 +13,9 @@ export default function OnLogin({ navigate, logout, userInfo }) {
       >
         로그아웃
       </Nav.Link>
-      <Nav.Link onClick={() => navigate('/admin')}>관리자</Nav.Link>
+      {userInfo.roleList.includes('ADMIN') && (
+        <Nav.Link onClick={() => navigate('/admin')}>관리자</Nav.Link>
+      )}
     </Nav>
   );
 }

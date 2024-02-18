@@ -1,29 +1,85 @@
 import { Button } from 'react-bootstrap';
-import styles from '../../css/Discussion/DiscussionDetail.module.css';
+import styles from '../../css/Suggestion/SuggestionDetail.module.css';
+import { useContext } from 'react';
+import { LoginContext } from '../../contexts/LoginContextProvider';
 import { useNavigate } from 'react-router-dom';
-import * as request from '../../apis/suggestion';
+import * as suggestionApi from '../../apis/suggestion';
+import * as Swal from '../../apis/alert';
 
 const SuggestionDetail = ({ data }) => {
   const navigate = useNavigate();
+  const { userInfo, userRole } = useContext(LoginContext);
 
+  const notUser = () => {
+    if (userInfo.userId !== data.userId) {
+      Swal.alert(
+        '유효하지 않은 접근입니다',
+        '작성자만 수정, 삭제가 가능합니다',
+        'warning',
+        () => {
+          navigate('/suggestion');
+        }
+      );
+      return true;
+    }
+  };
+
+  const notAdmin = () => {
+    if (!userRole.isAdmin) {
+      Swal.alert(
+        '유효하지 않은 접근입니다',
+        '관리자만 반영이 가능합니다',
+        'warning',
+        () => {
+          navigate('/suggestion');
+        }
+      );
+      return true;
+    }
+  };
   const editSuggestion = () => {
+    if (notUser()) {
+      return;
+    }
     navigate(`/suggestion/edit/${data.id}`);
   };
-  const deleteSuggestion = () => {
-    request.deleteSuggestion(data.id);
-    navigate('/suggestion');
+  const deleteSuggestion = async () => {
+    if (notUser()) {
+      return;
+    }
+    const response = await suggestionApi.deleteSuggestion(data.id);
+
+    if (response.status === 200) {
+      Swal.alert('제안 삭제 완료', '메인화면으로 이동합니다', 'success', () => {
+        navigate('/');
+      });
+    } else {
+      navigate('/suggestion');
+    }
   };
 
   const sendSuggestion = () => {
-    const response = request.sendSuggestion(data.id);
+    if (notAdmin()) {
+      return;
+    }
+    const response = suggestionApi.sendSuggestion(data.id);
 
     response.then((res) => {
       if (res.status === 200) {
-        alert('반영되었습니다.');
-        request.deleteSuggestion(data.id);
+        Swal.alert(
+          '제안 등록 완료',
+          '메인화면으로 이동합니다',
+          'success',
+          () => {
+            navigate('/');
+          }
+        );
+        suggestionApi.deleteSuggestion(data.id);
         navigate('/suggestion');
       } else {
-        alert('반영에 실패했습니다.');
+        Swal.alert('제안 등록 실패', '메인화면으로 이동합니다', 'error', () => {
+          navigate('/');
+        });
       }
     });
   };

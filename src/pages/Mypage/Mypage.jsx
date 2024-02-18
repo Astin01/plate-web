@@ -4,7 +4,7 @@ import MypageForm from '../../components/Mypage/MypageForm';
 import { LoginContext } from '../../contexts/LoginContextProvider';
 import { useNavigate } from 'react-router-dom';
 import * as Swal from '../../apis/alert';
-
+import styles from '../../css/Mypage/Mypage.module.css';
 export default function Mypage() {
   const [userInfo, setUserInfo] = useState({});
   const { isLogin, userRole, logout } = useContext(LoginContext);
@@ -14,8 +14,14 @@ export default function Mypage() {
   const getUserInfo = async () => {
     // 비로그인 혹은 USER 권한이 없을 경우 로그인 페이지로 이동
     if (!isLogin || !userRole.isUser) {
-      alert('로그인 후 이용해주세요.');
-      navigate('/login');
+      Swal.alert(
+        '유효하지 않은 접근입니다',
+        '로그인 후 이용해주세요',
+        'warning',
+        () => {
+          navigate('/login');
+        }
+      );
       return;
     }
     const response = await auth.getUserInfo();
@@ -31,6 +37,7 @@ export default function Mypage() {
     try {
       response = await auth.update(form);
     } catch (error) {
+      return;
     }
 
     const status = response.status;
@@ -70,13 +77,20 @@ export default function Mypage() {
 
   useEffect(() => {
     if (!isLogin) {
-      return;
+      Swal.alert(
+        '유효하지 않은 접근입니다',
+        '로그인 후 이용해주세요',
+        'warning',
+        () => {
+          navigate('/login');
+        }
+      );
     }
     getUserInfo();
   }, [isLogin]);
 
   return (
-    <>
+    <div className={`${styles.contentWrapper}`}>
       {isLogin && (
         <MypageForm
           userInfo={userInfo}
@@ -84,6 +98,6 @@ export default function Mypage() {
           deleteUser={deleteUser}
         />
       )}
-    </>
+    </div>
   );
 }
