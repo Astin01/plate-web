@@ -6,14 +6,13 @@ import styles from './css/App/App.module.css';
 import Home from './pages/Home';
 import Login from './pages/Auth/Login';
 import SignIn from './pages/Auth/SignIn';
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 import Notice from './pages/Notice/Notice';
 import Mypage from './pages/Mypage/Mypage';
 import Admin from './pages/Mypage/Admin';
 import ContentNav from './components/Nav/ContentNav';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(0);
   const Category = React.lazy(() => import('./components/Main/Category'));
   const Restaurant = React.lazy(() => import('./pages/Restaurant/Restaurant'));
   const RestaurantDetail = React.lazy(() =>
@@ -38,13 +37,13 @@ function App() {
     <>
       <div className={`${styles.entireWrap}`}>
         <div className={`${styles.contentWrap}`}>
-          <SiteNav isLogin={isLogin} />
+          <SiteNav />
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/event/:id" element={<Notice />} />
+              <Route path="/notice/:id" element={<Notice />} />
               <Route path="/category/:category" element={<Category />} />
 
               <Route
@@ -82,7 +81,7 @@ function App() {
               <Route path="/admin" element={<Admin />} />
             </Routes>
           </Suspense>
-          <ContentNav isLogin={isLogin} />
+          <ContentNav />
         </div>
       </div>
     </>
