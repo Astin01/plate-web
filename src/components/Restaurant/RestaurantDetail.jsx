@@ -27,11 +27,7 @@ export default function RestaurantDetail({ data }) {
       <div className={`col ${styles.contentWrap}`}>
         <div>{data.content}</div>
       </div>
-      <Button
-        variant="primary"
-        className={`${styles.editButton}`}
-        onClick={edit}
-      >
+      <Button variant="primary" className={styles.editButton} onClick={edit}>
         <span class="material-symbols-outlined">edit_document</span>
       </Button>
     </>

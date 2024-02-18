@@ -1,0 +1,8 @@
+.contentArea {
+  min-height: 400px;
+}
+.buttonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2%;
+}

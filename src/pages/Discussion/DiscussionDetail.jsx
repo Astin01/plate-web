@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DiscussionDetailComponent from '../../components/Discussion/DiscussionDetail';
+import * as discussionApi from '../../apis/discussion';
+import styles from '../../css/Discussion/DiscussionDetailPage.module.css';
 
 const DiscussionDetail = () => {
   const params = useParams();
@@ -12,8 +14,9 @@ const DiscussionDetail = () => {
     });
   }, []);
   return (
-    <div className="container">
-      <DiscussionDetailComponent data={data} />
+    <div className={`container ${styles.contentWrap}`}>
+      <DiscussionDetailComponent setData={setData} data={data} />
+      <div></div>
     </div>
   );
 };

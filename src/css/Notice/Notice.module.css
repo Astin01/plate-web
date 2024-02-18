@@ -1,0 +1,11 @@
+.noticeWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contentWrap:nth-child(1) {
+  flex-grow: 1;
+}
+.contentWrap:nth-child(2) {
+  flex-grow: 2;
+}

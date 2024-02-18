@@ -1,0 +1,9 @@
+.signInWrap {
+  display: flex;
+}
+.signInWrap:nth-child(1) {
+  flex-grow: 1;
+}
+.signInWrap:nth-child(2) {
+  flex-grow: 2;
+}

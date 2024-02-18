@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import styles from '../../css/CkEditor/CkEditor.module.css';
+import styles from '../../css/Editor/Editor.module.css';
 import { Button } from 'react-bootstrap';
 
 const Editor = ({ data, onSubmit }) => {
@@ -27,9 +27,11 @@ const Editor = ({ data, onSubmit }) => {
           required
         />
       </InputGroup>
-      <Button variant="primary" type="submit">
-        작성
-      </Button>
+      <div className={styles.buttonWrap}>
+        <Button variant="primary" type="submit">
+          작성
+        </Button>
+      </div>
     </Form>
   );
 };

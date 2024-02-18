@@ -2,3 +2,13 @@
   margin-top: 10px;
   padding-left: 30px;
 }
+
+.buttonWrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonWrap button {
+  margin: 2%;
+  max-width: 30%;
+}

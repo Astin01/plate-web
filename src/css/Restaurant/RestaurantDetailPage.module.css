@@ -1,0 +1,10 @@
+.restaurantDetailPageWrap {
+  display: flex;
+  flex-direction: column;
+}
+.restaurantDetailPageWrap:nth-child(1) {
+  flex-grow: 1;
+}
+.restaurantDetailPageWrap:nth-child(2) {
+  flex-grow: 2;
+}

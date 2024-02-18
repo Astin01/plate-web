@@ -16,3 +16,12 @@
   padding-right: 50px;
   align-items: center;
 }
+
+.buttonWrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonWrap button {
+  margin: 1%;
+}

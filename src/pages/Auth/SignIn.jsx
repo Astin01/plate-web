@@ -30,8 +30,9 @@ export default function SignIn() {
     }
   };
   return (
-    <>
+    <div className={`${styles.signInWrap}`}>
       <SignInForm signIn={signIn} />
-    </>
+      <div></div>
+    </div>
   );
 }

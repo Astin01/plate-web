@@ -9,29 +9,14 @@
   flex-grow: 1;
 }
 
-.textlarge {
-  font-size: 100px;
-}
-.wrap {
-  width: 100vw;
-  justify-content: space-between;
-}
-.menuWrapper {
-  display: flex;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-.name {
-  padding-top: 30px;
-  padding-left: 35px;
-  font-size: 20px;
-}
-
 .editButton {
   float: right;
   padding: 10px 11px 10px 11px;
   text-align: center;
-  margin-left: auto;
   line-height: 20px;
   border-radius: 50%;
+}
+.button {
+  position: relative;
+  bottom: -70%;
 }

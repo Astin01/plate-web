@@ -1,0 +1,10 @@
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.contentWrapper:nth-child(1) {
+  flex-grow: 2;
+}
+.contentWrapper:nth-child(2) {
+  flex-grow: 1;
+}

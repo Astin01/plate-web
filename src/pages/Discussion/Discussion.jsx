@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from '../../css/Discussion/Discussion.module.css';
+import styles from '../../css/Discussion/DiscussionPage.module.css';
 import { useEffect, useState } from 'react';
 import DiscussionComponent from '../../components/Discussion/Discussion';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import * as discussionApi from '../../apis/discussion';
 
 const Discussion = () => {
   const params = useParams();
@@ -11,25 +11,24 @@ const Discussion = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: `/api/discussion`,
-    }).then((res) => {
+    discussionApi.getAllDiscussion().then((res) => {
       setData(res.data);
     });
   }, []);
   return (
-    <div className={`container ${styles.wrapContent}`}>
+    <div className={`container ${styles.contentWrapper}`}>
       <div className={`row justify-content-center`}>
         <DiscussionComponent data={data} category={params.category} />
       </div>
-      <Button
-        variant="primary"
-        className={`${styles.editButton}`}
-        onClick={() => navigate('/discussion/new')}
-      >
-        <span class="material-symbols-outlined ">edit</span>
-      </Button>
+      <div className={`${styles.button}`}>
+        <Button
+          variant="primary"
+          className={`${styles.editButton}`}
+          onClick={() => navigate('/discussion/new')}
+        >
+          <span class="material-symbols-outlined ">edit</span>
+        </Button>
+      </div>
     </div>
   );
 };
