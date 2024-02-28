@@ -2,7 +2,7 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import styles from '../../css/Discussion/DiscussionDetail.module.css';
 import { useNavigate } from 'react-router-dom';
 import * as discussionApi from '../../apis/discussion';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../../contexts/LoginContextProvider';
 import * as Swal from '../../apis/alert';
 import * as commentApi from '../../apis/comment';
@@ -12,14 +12,15 @@ const DiscussionDetail = ({ data }) => {
   const navigate = useNavigate();
   const { userInfo } = useContext(LoginContext);
 
+  debugger;
   const notUser = () => {
-    if (userInfo.userId !== data.userId) {
+    if (userInfo.userId !== data.userId.userId) {
       Swal.alert(
         '유효하지 않은 접근입니다',
         '작성자만 수정, 삭제가 가능합니다',
         'warning',
         () => {
-          navigate('/suggestion');
+          navigate('/discussion');
         }
       );
       return true;
@@ -60,15 +61,23 @@ const DiscussionDetail = ({ data }) => {
     const discussion_id = data.id;
 
     const response = await commentApi.createComment(discussion_id, { comment });
-    if (response.status === 201) {
+    console.log(response);
+    if (response.status === 200) {
       commentApi.getComment(discussion_id).then((res) => {
-        const data = res.data;
+        const data = res.data.commentContent.comments;
+
         setCommentData(data);
       });
-      navigate(`/discussion/${discussion_id}`);
     }
   };
 
+  useEffect(() => {
+    if (data.comments === undefined) {
+      return;
+    } else {
+      setCommentData(data.comments.comment);
+    }
+  }, [data.comments]);
   return (
     <div>
       <div className={`col ${styles.container}`}>
@@ -88,9 +97,12 @@ const DiscussionDetail = ({ data }) => {
       </div>
       <div>
         <div>
-          {commentData &&
+          {commentData.length !== 0 &&
             commentData.map((comment) => (
-              <div key={comment.id}>{comment.comment}</div>
+              <div>
+                <div key={comment.id}>{comment.userNickname}</div>
+                <div key={comment.id}>{comment.comment}</div>
+              </div>
             ))}
         </div>
         <Form onSubmit={(e) => onSubmit(e)}>

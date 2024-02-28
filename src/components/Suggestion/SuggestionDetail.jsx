@@ -63,7 +63,6 @@ const SuggestionDetail = ({ data }) => {
       return;
     }
     const response = suggestionApi.sendSuggestion(data.id);
-
     response.then((res) => {
       if (res.status === 200) {
         Swal.alert(
@@ -71,11 +70,10 @@ const SuggestionDetail = ({ data }) => {
           '메인화면으로 이동합니다',
           'success',
           () => {
+            suggestionApi.deleteSuggestion(data.id);
             navigate('/');
           }
         );
-        suggestionApi.deleteSuggestion(data.id);
-        navigate('/suggestion');
       } else {
         Swal.alert('제안 등록 실패', '메인화면으로 이동합니다', 'error', () => {
           navigate('/');

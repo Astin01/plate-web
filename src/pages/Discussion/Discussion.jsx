@@ -12,7 +12,8 @@ const Discussion = () => {
 
   useEffect(() => {
     discussionApi.getAllDiscussion().then((res) => {
-      setData(res.data);
+      const data = res.data.discussions.discussions;
+      setData(data);
     });
   }, []);
   return (
