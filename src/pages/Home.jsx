@@ -29,7 +29,7 @@ export default function Home() {
         className={`container ${styles.entireWrap}`}
         style={{ paddingTop: 20 }}
       >
-        <div className="row">
+        <div className={`row ${styles.categoryWrap}`}>
           <Category data={categoryIcon} />
         </div>
       </div>
