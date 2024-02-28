@@ -19,10 +19,6 @@ export default function RestaurantDetail({ data }) {
         <h2>{data.name}</h2>
       </div>
       <div class="w-100"></div>
-      <div className={`col ${styles.contentWrap}`}>
-        <h4>추천메뉴</h4>
-        <div>{data.menu}</div>
-      </div>
       <div class="w-100"></div>
       <div className={`col ${styles.contentWrap}`}>
         <div>{data.content}</div>

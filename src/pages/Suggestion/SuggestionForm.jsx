@@ -10,11 +10,11 @@ import styles from '../../css/Suggestion/SuggestionFormPage.module.css';
 const SuggestionForm = ({ isTrue }) => {
   const params = useParams();
   let [data, setData] = useState([]);
-  const { isLogin, userRole } = useContext(LoginContext);
+  const { isLogin } = useContext(LoginContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLogin || !userRole.isUser) {
+    if (!isLogin) {
       Swal.alert(
         '유효하지 않은 접근입니다',
         '로그인 후 이용해주세요',

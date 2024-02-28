@@ -7,13 +7,12 @@ import * as Swal from '../../apis/alert';
 import styles from '../../css/Mypage/Mypage.module.css';
 export default function Mypage() {
   const [userInfo, setUserInfo] = useState({});
-  const { isLogin, userRole, logout } = useContext(LoginContext);
+  const { isLogin, logout } = useContext(LoginContext);
   const navigate = useNavigate();
 
   //회원 정보 조회
   const getUserInfo = async () => {
-    // 비로그인 혹은 USER 권한이 없을 경우 로그인 페이지로 이동
-    if (!isLogin || !userRole.isUser) {
+    if (!isLogin) {
       Swal.alert(
         '유효하지 않은 접근입니다',
         '로그인 후 이용해주세요',
