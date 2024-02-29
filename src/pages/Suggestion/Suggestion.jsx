@@ -10,7 +10,7 @@ const Suggestion = () => {
 
   useEffect(() => {
     suggestionApi.getAllSuggestion().then((res) => {
-      setData(res.data);
+      setData(res.data.suggestionDto);
     });
   }, []);
   return (
