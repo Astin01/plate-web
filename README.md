@@ -44,3 +44,6 @@ Data: Spring Data JPA / MySQL / JWT
 
 ## ERD
 <img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/fb87a97e-bdb3-4d16-8883-973fdf7b564a">
+
+## 연관 레포지토리
+- [zeroplate_back](https://github.com/Astin01/plate-api/tree/main)
