@@ -1,5 +1,8 @@
 import axios from 'axios';
 
-const api = axios.create();
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const api = axios.create({
+  baseURL: `${PROXY}`,
+});
 
 export default api;
