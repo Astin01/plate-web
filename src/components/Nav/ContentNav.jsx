@@ -1,12 +1,9 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../css/Nav/ContentNav.module.css';
-import { useContext } from 'react';
-import { LoginContext } from '../../contexts/LoginContextProvider.jsx';
 
 const ContentNav = () => {
   const navigate = useNavigate();
-  const { isLogin, logout, userInfo } = useContext(LoginContext);
 
   return (
     <Navbar sticky="bottom" bg="light" data-bs-theme="light">
