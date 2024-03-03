@@ -170,6 +170,7 @@ const LoginContextProvider = ({ children }) => {
   useEffect(() => {
     // 로그인 체크
     loginCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
