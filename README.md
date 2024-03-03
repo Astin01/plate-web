@@ -46,7 +46,7 @@ Data: Spring Data JPA / MySQL / JWT
 <img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/fb87a97e-bdb3-4d16-8883-973fdf7b564a">
 
 ## 인프라 아키텍처
-<img width="80%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/04478768-57a6-478d-860e-8a9773d97ae7">
+<img width="80%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/980a8e53-9c93-4170-8274-e10c9b057792">
 
 ## 연관 레포지토리
 - [zeroplate_back](https://github.com/Astin01/plate-api/tree/main)
