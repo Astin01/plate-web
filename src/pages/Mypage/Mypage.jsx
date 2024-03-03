@@ -86,6 +86,7 @@ export default function Mypage() {
       );
     }
     getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
 
   return (

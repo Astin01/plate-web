@@ -12,6 +12,7 @@ const Notice = () => {
     noticeApi.getNotice(param.id).then((res) => {
       setData(res.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className={styles.contentWrap}>

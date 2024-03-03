@@ -12,6 +12,7 @@ const Suggestion = () => {
     suggestionApi.getAllSuggestion().then((res) => {
       setData(res.data.suggestionDto);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className={`container ${styles.contentWrapper}`}>

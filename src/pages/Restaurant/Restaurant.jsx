@@ -11,6 +11,7 @@ export default function Restaurant() {
     RestaurantApi.getRestaurantByCategory(params.category).then((res) => {
       setData(res.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className={`container ${styles.wrapContent}`}>
