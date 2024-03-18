@@ -1,4 +1,4 @@
-# [Zero Plate Wiki](https://zero-plate.netlify.app)
+# [Zero Plate Wiki](https://zero-plate.netlify.app/)
 공릉동 음식점에 대한 정보를 정리한 위키 
 
 ## 주요기능
