@@ -10,7 +10,7 @@ const Suggestion = () => {
 
   useEffect(() => {
     suggestionApi.getAllSuggestion().then((res) => {
-      setData(res.data.suggestionDto);
+      setData(res.data.suggestionList);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -12,7 +12,6 @@ const DiscussionDetail = ({ data }) => {
   const navigate = useNavigate();
   const { userInfo } = useContext(LoginContext);
 
-  debugger;
   const notUser = () => {
     if (userInfo.userId !== data.userId.userId) {
       Swal.alert(

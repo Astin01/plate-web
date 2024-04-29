@@ -8,7 +8,7 @@ export default function RestaurantDetail() {
   let [data, setData] = useState([]);
   useEffect(() => {
     RestaurantApi.getRestaurantByName(params.name).then((res) => {
-      setData(res.data);
+      setData(res.data.restaurant);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

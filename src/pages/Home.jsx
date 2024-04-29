@@ -11,11 +11,11 @@ export default function Home() {
 
   async function getNotice() {
     const notices = await notice.getAllNotice();
-    setNoticeData(notices.data);
+    setNoticeData(notices.data.notices);
   }
   async function getCategoryIcon() {
     let icons = await categoryIconApi.getAllCategoryIcon();
-    setCategoryIcon(icons.data);
+    setCategoryIcon(icons.data.iconList);
   }
 
   useEffect(() => {

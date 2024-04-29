@@ -3,7 +3,6 @@ import styles from '../../css/Main/Category.module.css';
 
 export default function Category({ data }) {
   const navigate = useNavigate();
-
   let Category =
     data &&
     data.map((data) => {

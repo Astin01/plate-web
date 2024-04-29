@@ -9,7 +9,7 @@ export default function Restaurant() {
   let [data, setData] = useState([]);
   useEffect(() => {
     RestaurantApi.getRestaurantByCategory(params.category).then((res) => {
-      setData(res.data);
+      setData(res.data.restaurantList);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
