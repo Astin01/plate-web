@@ -42,11 +42,10 @@ Framework: Spring Boot / Spring MVC
 
 Data: Spring Data JPA / MySQL / JWT
 
+Infra : Docker / Github Action
+
 ## ERD
 <img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/fb87a97e-bdb3-4d16-8883-973fdf7b564a">
-
-##  인프라 아키텍처
-<img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/53f240eb-ff36-41f3-99ca-542315bebf61">
 
 ## 연관 레포지토리
 - [zeroplate_back](https://github.com/Astin01/plate-api/tree/main)
