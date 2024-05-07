@@ -63,6 +63,8 @@ const LoginContextProvider = ({ children }) => {
 
     data = response.data;
 
+    console.log(data);
+
     // 인증 실패
     if (data === 'UNAUTHORIZED' || response.status === 401) {
       return;
@@ -74,6 +76,7 @@ const LoginContextProvider = ({ children }) => {
 
   // 로그인
   const login = async (userId, password) => {
+    const STATUS_OK = 200;
     try {
       const response = await auth.login(userId, password);
       const status = response.status;
@@ -81,7 +84,7 @@ const LoginContextProvider = ({ children }) => {
       const authorization = headers.authorization;
       const accessToken = authorization.replace('Bearer ', ''); // jwt
 
-      if (status === 200) {
+      if (status === STATUS_OK) {
         // 쿠키에 accessToken(jwt) 저장
         Cookies.set('accessToken', accessToken, { expires: 7 });
 

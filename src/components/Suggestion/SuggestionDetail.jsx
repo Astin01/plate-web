@@ -44,12 +44,13 @@ const SuggestionDetail = ({ data }) => {
     navigate(`/suggestion/edit/${data.id}`);
   };
   const deleteSuggestion = async () => {
+    const NO_CONTENT = 204;
     if (notUser()) {
       return;
     }
     const response = await suggestionApi.deleteSuggestion(data.id);
 
-    if (response.status === 200) {
+    if (response.status === NO_CONTENT) {
       Swal.alert('제안 삭제 완료', '메인화면으로 이동합니다', 'success', () => {
         navigate('/');
       });

@@ -63,9 +63,10 @@ export default function Mypage() {
     } catch (error) {
       return;
     }
+    const STATUS_NO_CONTENT = 204;
     const status = response.status;
 
-    if (status === 200) {
+    if (status === STATUS_NO_CONTENT) {
       Swal.alert('회원탈퇴 성공', '그동안 감사했습니다.', 'success', () => {
         logout(true);
       });

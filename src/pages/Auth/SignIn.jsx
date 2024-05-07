@@ -6,6 +6,7 @@ import styles from '../../css/SignIn/SignIn.module.css';
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const STATUS_SUCCESS = 201;
   // 회원가입 요청
   const signIn = async (form) => {
     let response;
@@ -14,9 +15,10 @@ export default function SignIn() {
     } catch (error) {
       return;
     }
+
     const status = response.status;
 
-    if (status === 200) {
+    if (status === STATUS_SUCCESS) {
       Swal.alert(
         '회원가입 성공',
         '로그인 페이지로 이동합니다.',
