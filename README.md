@@ -47,6 +47,12 @@ Infra : Docker / Github Action
 ## ERD
 <img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/fb87a97e-bdb3-4d16-8883-973fdf7b564a">
 
+## 인프라 아키텍처 
+<img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/dbcc42b6-1aeb-4a24-854e-e41a90859ac0">
+
+## 백엔드 CI/CD
+<img width="100%" alt="image" src="https://github.com/Astin01/plate-web/assets/60924984/1f09663b-5e95-40c8-839d-22f739ff39e6">
+
 ## 연관 레포지토리
 - [zeroplate_back](https://github.com/Astin01/plate-api/tree/main)
 
