@@ -11,6 +11,7 @@ import Notice from './pages/Notice/Notice';
 import Mypage from './pages/Mypage/Mypage';
 import Admin from './pages/Mypage/Admin';
 import ContentNav from './components/Nav/ContentNav';
+import Rating from './pages/Rating/Rating';
 
 function App() {
   const Category = React.lazy(() => import('./components/Main/Category'));
@@ -79,6 +80,7 @@ function App() {
 
               <Route path="/mypage" element={<Mypage />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/rating" element={<Rating />} />
             </Routes>
           </Suspense>
           <ContentNav />
