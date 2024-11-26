@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "http://ec2-3-38-227-81.ap-northeast-2.compute.amazonaws.com/:splat"  
+  to = "https://zero-plate.duckdns.org/:splat"  
   status = 200
   force = true
