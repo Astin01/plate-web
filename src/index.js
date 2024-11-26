@@ -4,13 +4,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import LoginContextProvider from './contexts/LoginContextProvider';
+import { RatingProvider } from './contexts/RatingContextProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <LoginContextProvider>
-        <App />
+        <RatingProvider>
+          <App />
+        </RatingProvider>
       </LoginContextProvider>
     </BrowserRouter>
   </React.StrictMode>

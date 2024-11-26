@@ -83,6 +83,7 @@ const LoginContextProvider = ({ children }) => {
       const headers = response.headers;
       const authorization = headers.authorization;
       const accessToken = authorization.replace('Bearer ', ''); // jwt
+      const responseBody =response.data;
 
       if (status === STATUS_OK) {
         // 쿠키에 accessToken(jwt) 저장
@@ -91,9 +92,16 @@ const LoginContextProvider = ({ children }) => {
         //로그인 체크 (/users/{userId} <-- userData)
         loginCheck();
 
+        if(responseBody.userStatus === 'PENDING'){
+          Swal.alert('최초 로그인 유저입니다', '사용자 선호도 조사화면으로 이동합니다', 'success', () => {
+            navigate('/rating');
+          });
+        }
+        else{
         Swal.alert('로그인 성공', '메인화면으로 이동합니다', 'success', () => {
           navigate('/');
         });
+      }
 
         // // 메인 페이지로 이동
         // navigate('/');
@@ -106,7 +114,7 @@ const LoginContextProvider = ({ children }) => {
   // 로그인 세팅
   // userData, accessToken(jwt)
   const loginSetting = (userData, accessToken) => {
-    const { id, userId, name, nickname, email, userRoles } = userData;
+    const { id, userId, name, nickname, email, userRoles,userStatus } = userData;
     const roleList = userRoles.userRole.map((role) => role.role);
 
     // axios 객체의 header(Authorization : `Bearer ${accessToken}`)
@@ -115,7 +123,7 @@ const LoginContextProvider = ({ children }) => {
     // 로그인 여부 : true
     setIsLogin(true);
     // 유저정보 세팅
-    const updatedUserInfo = { id, userId, name, nickname, email, roleList };
+    const updatedUserInfo = { id, userId, name, nickname, email, roleList,userStatus };
     setUserInfo(updatedUserInfo);
 
     // 권한정보 세팅
@@ -178,7 +186,7 @@ const LoginContextProvider = ({ children }) => {
 
   return (
     <LoginContext.Provider
-      value={{ userInfo, userRole, isLogin, login, logout }}
+      value={{ userInfo, userRole, isLogin, login, logout,loginCheck }}
     >
       {children}
     </LoginContext.Provider>

@@ -14,6 +14,9 @@ export const getRestaurantByName = (name) =>
 export const getRestaurantByCategory = (category) =>
   api.get(`/api/restaurants/category/${category}`);
 
+export const getRestaurantByPreferencesCategory = (category) =>
+  api.get(`/api/restaurants/category/${category}/recommend`);
+
 //식당 목록 전부 조회
 export const getAllRestaurant = () => api.get(`/api/restaurants`);
 

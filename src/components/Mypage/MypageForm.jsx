@@ -1,8 +1,10 @@
 import React from 'react';
 import { Container, Form, Row, Button } from 'react-bootstrap';
 import styles from '../../css/Mypage/MypageForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const MypageForm = ({ userInfo, updateUser, deleteUser }) => {
+  const navigate = useNavigate();
   const onUpdate = (e) => {
     e.preventDefault();
 
@@ -87,6 +89,16 @@ const MypageForm = ({ userInfo, updateUser, deleteUser }) => {
             }}
           >
             회원탈퇴
+          </Button>
+        </Row>
+        <Row>
+          <Button 
+          variant="primary"             
+          type="button"
+          onClick={(e) => {
+              e.preventDefault();
+              navigate("/rating");}}>
+            선호도 수정
           </Button>
         </Row>
       </Form>

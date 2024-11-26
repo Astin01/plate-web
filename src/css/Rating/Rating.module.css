@@ -1,0 +1,29 @@
+.textlarge {
+  font-size: 600%;
+}
+.wrapContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapContent:nth-child(1) {
+  flex-grow: 1;
+}
+.wrapContent:nth-child(2) {
+  flex-grow: 2;
+}
+
+.menuWrapper {
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.name {
+  padding-top: 10%;
+  padding-left: 10%;
+  font-size: 110%;
+}
+
+.question{
+  justify-content: center;
+}
